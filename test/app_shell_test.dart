@@ -35,5 +35,10 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Settings'), findsWidgets);
+    // pushed route shows an automatic back button (Android/iOS) and pops
+    expect(find.byTooltip('Back'), findsOneWidget);
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pumpAndSettle();
+    expect(find.text('Coming in Phase 2'), findsOneWidget);
   });
 }
